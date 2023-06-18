@@ -10,8 +10,18 @@ datasource db {
   url      = "file:./dev.db"
 }
 
+model User {
+  id     Int    @id @default(autoincrement())
+  name   String
+  depart String
+
+  meetings Meeting[]
+}
+
 model Meeting {
   id            Int         @id @default(autoincrement())
+  host          User        @relation(fields: [hostId], references: [id])
+  hostId        Int
   meetingRoom   MeetingRoom @relation(fields: [meetingRoomId], references: [id])
   meetingRoomId Int
   startDate     DateTime
@@ -19,9 +29,10 @@ model Meeting {
 }
 
 model MeetingRoom {
-  id       Int       @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   location Int
   floor    Int
   size     String
-  Meeting  Meeting[]
+
+  meetings Meeting[]
 }
