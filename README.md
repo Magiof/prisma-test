@@ -1,7 +1,3 @@
-# Hopae Assignment
-
-Check Our Issue Page for more information about the assignment.
-
 ## Installation
 
 ```bash
